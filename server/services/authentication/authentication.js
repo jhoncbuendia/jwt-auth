@@ -6,7 +6,7 @@
     implement authentication token service finding the users in the database
     implement authorization service based in users roles
     implement authorization middleware for get access to api
-    
+
 */
 
 
@@ -14,9 +14,10 @@
 var mongoose = require('mongoose');
 var jwt = require('jwt-simple');
 var moment = require('moment');
+const crypto = require('crypto');
 
 
-mongoose.connect('mongodb://localhost/auth');
+
 var uniqueValidator = require('mongoose-unique-validator');
 
 
@@ -31,14 +32,14 @@ userSchema.plugin(uniqueValidator);
 
 module.exports = {
   createToken : function(username, pwd){
-
+  console.log(crypto.createHash('md5').update("123456").digest("hex"));
   var User = mongoose.model('User', userSchema);
 
-  User.findOne({ 'username': 'jhon' }, function (err, user) {
+  /*User.findOne({ 'username': 'jhon' }, function (err, user) {
       if (err){console.log(err);}
       else{console.log(user.username);}
   });
-
+*/
     var payload = {
       username: username,
       pwd: pwd,
