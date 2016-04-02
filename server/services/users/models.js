@@ -23,18 +23,17 @@ function validateUser(user){
 
 module.exports  = {
 
-    saveUser: function(user){
+    saveUser: function(u){
 
-      user['pwd'] = crypto.createHash('md5').update(user['pwd']).digest("hex");
+      //user['pwd'] = crypto.createHash('md5').update(user['pwd']).digest("hex");
       var response = {};
-      console.log("validando usuario");
-      console.log(user['username']);
-      var flag = validateUser(user);
-      var user = new User(user);
+      var flag = validateUser(u);
+
 
       var promise = new Promise(function(fullfil, reject){
         if(flag){
-
+          u['pwd'] = crypto.createHash('md5').update(u['pwd']).digest("hex");
+          var user = new User(u);
           user.save(function (err) {
           if(err){
             response['code'] = 404;

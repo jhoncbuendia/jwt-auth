@@ -51,10 +51,10 @@ module.exports = {
     var secret = 'xxx';
     // encode
     var token = jwt.encode(payload, secret);
-    //console.log(token); //=> { foo: 'bar' }
+    console.log(token); //=> { foo: 'bar' }
     // decode
     var decoded = jwt.decode(token, secret);
-    //console.log(decoded); //=> { foo: 'bar' }
+    console.log(decoded); //=> { foo: 'bar' }
 
     var promise = new Promise(function(fullfil, reject){
 
